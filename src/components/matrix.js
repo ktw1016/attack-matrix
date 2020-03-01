@@ -1,6 +1,7 @@
 import './matrix.scss';
 import React from 'react';
 import _ from 'lodash';
+import { NavLink } from 'react-router-dom'
 import { data } from '../attack_matrix.js';
 
 export default class Matrix extends React.Component {
@@ -61,7 +62,11 @@ export default class Matrix extends React.Component {
             <tr key={_.uniqueId()}>
               { _.map(row, (data) =>
                 data &&
-                <td key={data.id}> { data.name ? data.name : data.id } </td>
+                <td key={data.id}>
+                  <NavLink exact to={{pathname: `/${data.id}`, data: data}}>
+                    {data.name ? data.name : data.id}
+                    </NavLink>
+                </td>
               )}
             </tr>
             )}
