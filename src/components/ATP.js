@@ -5,7 +5,6 @@ import './ATP.scss';
 export default class ATP extends React.Component {
   render() {
     const ATP = this.props.location.data;
-    console.log(ATP);
     const formatted_map = (data) => _.map(data, (value, index) => index + 1 === data.length ? `${value}` : `${value}, `)
 
     return (
