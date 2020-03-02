@@ -35,20 +35,24 @@ export default class Matrix extends React.Component {
     const zipped_data = _.zip(..._.map(processed_data));
 
     return <div>
-      <label> Search APT by: </label>
-      <select onChange={(evt) =>  this.setState({ query_criteria: evt.target.value }) }>
-        <option value="id" defaultValue> ID </option>
-        <option value="name"> Name </option>
-        <option value="created"> Created </option>
-        <option value="x_mitre_version"> Version </option>
-        <option value="type"> Type </option>
-        <option value="description"> Description </option>
-      </select>
-      <input
-        type="text"
-        placeholder="Search APT"
-        onChange={ (evt) => this.setState({ query: evt.target.value }) }
-      />
+      <div className="row-container">
+        <label> Search APT by: </label>
+        <select style={{marginRight:0}} onChange={(evt) =>  this.setState({ query_criteria: evt.target.value }) }>
+          <option value="id" defaultValue> ID </option>
+          <option value="name"> Name </option>
+          <option value="created"> Created </option>
+          <option value="x_mitre_version"> Version </option>
+          <option value="type"> Type </option>
+          <option value="description"> Description </option>
+        </select>
+        <input
+          type="text"
+          placeholder="Search APT"
+          onChange={ (evt) => this.setState({ query: evt.target.value }) }
+        />
+      </div>
+      <br></br>
+      <br></br>
       <Link to="/addatp">
         <button>Add new ATP</button>
       </Link>
