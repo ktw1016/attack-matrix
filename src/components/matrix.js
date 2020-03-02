@@ -3,6 +3,8 @@ import React from 'react';
 import _ from 'lodash';
 import { NavLink } from 'react-router-dom'
 import { data } from '../attack_matrix.js';
+import {Link} from "react-router-dom";
+
 
 export default class Matrix extends React.Component {
   constructor(props) {
@@ -47,6 +49,9 @@ export default class Matrix extends React.Component {
         placeholder="Search APT"
         onChange={ (evt) => this.setState({ query: evt.target.value }) }
       />
+      <Link to="/addatp">
+        <button>Add new ATP</button>
+      </Link>
       <br></br>
       <span style={{ fontWeight: 100, fontSize: 12 }}>
         Showing {zipped_data.length} rows of data
@@ -54,11 +59,11 @@ export default class Matrix extends React.Component {
       <table>
         <tbody>
           <tr key={"atp_type_header"}>
-            {_.map(processed_data, (atp_data, atp_type) => 
+            {_.map(processed_data, (atp_data, atp_type) =>
               <td key={atp_type} style={{fontWeight: "bold"}}> {atp_type} </td>
             )}
           </tr>
-          {_.map(zipped_data, (row) => 
+          {_.map(zipped_data, (row) =>
             <tr key={_.uniqueId()}>
               { _.map(row, (data) =>
                 data &&
@@ -74,4 +79,5 @@ export default class Matrix extends React.Component {
       </table>
     </div>;
   }
+
 }
