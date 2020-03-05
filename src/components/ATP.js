@@ -18,7 +18,7 @@ export default class ATP extends React.Component {
     return (
       <div className="column-container">
         <div className="row-container">
-          { editing ? <textarea id={ATP.name ? "name" : "id"} defaultValue={ATP.name || ATP.id}/>  : <span className="header" dangerouslySetInnerHTML={{ __html: ATP.name || ATP.id }} /> }
+          { editing ? <textarea className="header" id={ATP.name ? "name" : "id"} defaultValue={ATP.name || ATP.id}/>  : <span className="header" dangerouslySetInnerHTML={{ __html: ATP.name || ATP.id }} /> }
           <button className="edit" onClick={ () => {
             if(editing) {
               const fields = _.map(document.getElementsByTagName("TEXTAREA"));
@@ -37,7 +37,7 @@ export default class ATP extends React.Component {
         </div>
         {ATP.description && <span className="sub-header" dangerouslySetInnerHTML={{ __html: "Description" }} />}
         <div className="row-container">
-          { editing ? <textarea id="description" defaultValue={ATP.description}/> : <span className="left" dangerouslySetInnerHTML={{__html: ATP.description}}/> }
+          { editing ? <textarea className="left" id="description" defaultValue={ATP.description}/> : <span className="left" dangerouslySetInnerHTML={{__html: ATP.description}}/> }
           <div className= "right">
             <div className="column-container">
               <div className="row-container">
