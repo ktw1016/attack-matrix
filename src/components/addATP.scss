@@ -24,7 +24,9 @@
 .submit button{
   margin-left: 20px;;
 }
-
+button[name="submit"], button[name="cancel"]{
+  font-size: 20px;
+}
 button[name="submit"]{
   background-color: #8ad49d;
   border-radius: 5px;
