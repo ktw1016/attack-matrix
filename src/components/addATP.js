@@ -10,7 +10,8 @@ export default class AddATP extends React.Component{
       name:"",
       extname: "",
       extlocation: "",
-      error: false
+      error: false,
+      submiterror: true
     };
 
   }
@@ -19,11 +20,13 @@ export default class AddATP extends React.Component{
 
     return(
       <div>
-        <div className='generalinfo'>
+        <div className="topbar">
           <h1>Add new Attack pattern</h1>
+        </div>
+        <div className='generalinfo'>
           <h4>General Information</h4>
-          <label htmlFor="require" > Name of the Attack Pattern* :</label>
-          <input type="text" onChange={this.setname} placeholder="name"/>
+          <label style={{color: "red"}}> Name of the Attack Pattern* :</label>
+          <input id="aptname" type="text" onChange={this.setname} placeholder="name"/>
           <br></br>
           <label>Alternate name:</label>
           <input type="text" placeholder="Optional"></input>
@@ -42,19 +45,27 @@ export default class AddATP extends React.Component{
             <option>Example Tactic</option>
           </select>
         </div>
-        <h4>Platform: </h4>
-        <input type="checkbox"/>Linux<br></br>
-        <input type="checkbox"/>Mac<br></br>
-        <input type="checkbox"/>Windows<br></br>
-
-        <h4>Permissions Required: </h4>
-        <input type="checkbox"/>User<br></br>
-        <input type="checkbox"/>Admin<br></br>
-        <input type="checkbox"/>System<br></br>
-        <h4>Description</h4>
-        <textarea placeholder="Brief description"></textarea>
-        <h4>Detection</h4>
-        <textarea placeholder="Brief expalin how it's detected"></textarea>
+        <div className='containers'>
+          <h4>Platform: </h4>
+          <input type="checkbox"/>Linux<br></br>
+          <input type="checkbox"/>Mac<br></br>
+          <input type="checkbox"/>Windows<br></br>
+        </div>
+        <div className='containers'>
+          <h4>Permissions Required: </h4>
+          <input type="checkbox"/>User<br></br>
+          <input type="checkbox"/>Admin<br></br>
+          <input type="checkbox"/>System<br></br>
+        </div>
+        <div className='containers'>
+          <h4>Description</h4>
+          <textarea placeholder="Brief description"></textarea>
+        </div>
+        <div className='containers'>
+          <h4>Detection</h4>
+          <textarea placeholder="Brief expalin how it's detected"></textarea>
+        </div>
+        <div className='containers'>
         <h4>Add External Referece</h4>
         <table id='extternal' ref={this.tableref}>
           <thead>
@@ -65,9 +76,10 @@ export default class AddATP extends React.Component{
           </thead>
           <tbody>
             <tr>
-              <td><input type="text" onChange={this.setextname}  value={this.state.extname}></input></td>
-              <td><input type="url" onChange={this.seturl}  value={this.state.extlocation}></input></td>
-              <td style={this.state.error?{}:{display:'none',border:0}} ><font color={'red'}>Please enter something for both Name and url</font></td>
+              <td className="input"><input type="text" onChange={this.setextname}  value={this.state.extname}></input></td>
+              <td className="input"><input type="url" onChange={this.seturl}  value={this.state.extlocation}></input></td>
+              <td className="input">  <button name='extrefadd' onClick={this.add}>Add</button><br></br></td>
+              <td className="input" style={this.state.error?{}:{display:'none'}} ><font color={'red'}>Please enter something for both Name and url</font></td>
 
             </tr>
             {
@@ -82,18 +94,20 @@ export default class AddATP extends React.Component{
             })}
           </tbody>
         </table>
-        <button onClick={this.add}>Add</button><br></br>
-        <button onClick={this.submit}>Submit</button>
-        <button onClick={this.cancel}>Cancel</button>
-
+        </div>
+        <div className='submit'>
+          <button name='submit' onClick={this.submit}>Submit</button>
+          <button name='cancel'onClick={this.cancel}>Cancel</button>
+        </div>
       </div>
 
     );
   }
   setname=(e)=>{
-    this.setState({
-      name:e.target.value
-    });
+      this.setState({
+        name:e.target.value,
+      });
+
   }
   setextname=(e)=>{
     this.setState({
@@ -129,7 +143,10 @@ export default class AddATP extends React.Component{
       }
     }
     else {
-      window.alert("Please fill in a name");
+      document.getElementById("aptname").style.borderColor="red";
+      window.scrollTo(0, 0);
+      alert("Please enter a name");
+
     }
   }
 }

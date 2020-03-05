@@ -1,5 +1,53 @@
+.generalinfo,.containers{
+  border-bottom: 1px solid grey;
+  padding:20px;
+}
 .generalinfo input[type=text], select{
   display: inline-block;
   float:right;
-  margin-right: 70%;
+  margin-right: 50%;
+  padding-left: 5px;
+}
+.topbar{
+  background-color: #363636;
+  width:100%;
+  padding:  20px;
+  color:white;
+}
+.containers{
+  margin-top: 10px;
+}
+.submit{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.submit button{
+  margin-left: 20px;;
+}
+button[name="submit"], button[name="cancel"]{
+  font-size: 20px;
+}
+button[name="submit"]{
+  background-color: #8ad49d;
+  border-radius: 5px;
+}
+button[name="cancel"]{
+  background-color: #e35f5f;
+  border-radius: 5px;
+}
+button[name='extrefadd']{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+
+  background-color: #80e0ed;
+}
+.input{
+  border:none;
+}
+input[type="checkbox"]{
+  margin-left:10px;
+}
+textarea{
+  margin-left:10px;
 }
