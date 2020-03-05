@@ -10,7 +10,8 @@ export default class AddATP extends React.Component{
       name:"",
       extname: "",
       extlocation: "",
-      error: false
+      error: false,
+      submiterror: true
     };
 
   }
@@ -24,8 +25,8 @@ export default class AddATP extends React.Component{
         </div>
         <div className='generalinfo'>
           <h4>General Information</h4>
-          <label> Name of the Attack Pattern* :</label>
-          <input type="text" onChange={this.setname} name='aptname'placeholder="name"/>
+          <label style={{color: "red"}}> Name of the Attack Pattern* :</label>
+          <input id="aptname" type="text" onChange={this.setname} placeholder="name"/>
           <br></br>
           <label>Alternate name:</label>
           <input type="text" placeholder="Optional"></input>
@@ -75,9 +76,10 @@ export default class AddATP extends React.Component{
           </thead>
           <tbody>
             <tr>
-              <td><input type="text" onChange={this.setextname}  value={this.state.extname}></input></td>
-              <td><input type="url" onChange={this.seturl}  value={this.state.extlocation}></input></td>
-              <td name='errormsg' style={this.state.error?{}:{display:'none'}} ><font color={'red'}>Please enter something for both Name and url</font></td>
+              <td className="input"><input type="text" onChange={this.setextname}  value={this.state.extname}></input></td>
+              <td className="input"><input type="url" onChange={this.seturl}  value={this.state.extlocation}></input></td>
+              <td className="input">  <button name='extrefadd' onClick={this.add}>Add</button><br></br></td>
+              <td className="input" style={this.state.error?{}:{display:'none'}} ><font color={'red'}>Please enter something for both Name and url</font></td>
 
             </tr>
             {
@@ -92,7 +94,6 @@ export default class AddATP extends React.Component{
             })}
           </tbody>
         </table>
-        <button name='extrefadd' onClick={this.add}>Add</button><br></br>
         </div>
         <div className='submit'>
           <button name='submit' onClick={this.submit}>Submit</button>
@@ -103,9 +104,10 @@ export default class AddATP extends React.Component{
     );
   }
   setname=(e)=>{
-    this.setState({
-      name:e.target.value
-    });
+      this.setState({
+        name:e.target.value,
+      });
+
   }
   setextname=(e)=>{
     this.setState({
@@ -141,7 +143,10 @@ export default class AddATP extends React.Component{
       }
     }
     else {
-      document.getElementsByName('atpname').color='red';
+      document.getElementById("aptname").style.borderColor="red";
+      window.scrollTo(0, 0);
+      alert("Please enter a name");
+
     }
   }
 }

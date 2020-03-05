@@ -34,10 +34,13 @@ export default class Matrix extends React.Component {
       .value();
     const zipped_data = _.zip(..._.map(processed_data));
 
-    return <div>
+    return<div>
+      <div className="topbar">
+        <h1>xx attack matrix  xx</h1>
+      </div>
       <div className="row-container">
         <label> Search APT by: </label>
-        <select style={{marginRight:0}} onChange={(evt) =>  this.setState({ query_criteria: evt.target.value }) }>
+        <select id="types" style={{marginRight:10 }} onChange={(evt) =>  this.setState({ query_criteria: evt.target.value }) }>
           <option value="id" defaultValue> ID </option>
           <option value="name"> Name </option>
           <option value="created"> Created </option>
@@ -47,22 +50,23 @@ export default class Matrix extends React.Component {
         </select>
         <input
           type="text"
+          autoFocus
           placeholder="Search APT"
-          onChange={ (evt) => this.setState({ query: evt.target.value }) }
+          onChange={ (evt) => this.setState({ query: evt.target.value })
+
+        }
         />
       </div>
-      <br></br>
-      <br></br>
       <Link to="/addatp">
         <button>Add new ATP</button>
       </Link>
       <br></br>
-      <span style={{ fontWeight: 100, fontSize: 12 }}>
-        Showing {zipped_data.length} rows of data
+      <span style={{ fontWeight: 100, fontSize: 15 }}>
+        Showing <span style={{color: "blue"}}>{zipped_data.length}</span> rows of data
       </span>
       <table>
         <tbody>
-          <tr key={"atp_type_header"}>
+          <tr className="type_header" key={"atp_type_header"}>
             {_.map(processed_data, (atp_data, atp_type) =>
               <td key={atp_type} style={{fontWeight: "bold"}}> {atp_type} </td>
             )}
@@ -71,7 +75,7 @@ export default class Matrix extends React.Component {
             <tr key={_.uniqueId()}>
               { _.map(row, (data) =>
                 data &&
-                <td key={data.id}>
+                <td className="data" key={data.id}>
                   <NavLink exact to={{pathname: `/${data.id}`, data: data}}>
                     {data.name ? data.name : data.id}
                     </NavLink>

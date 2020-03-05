@@ -1,6 +1,6 @@
 .generalinfo,.containers{
   border-bottom: 1px solid grey;
-  padding-left: 20px;
+  padding:20px;
 }
 .generalinfo input[type=text], select{
   display: inline-block;
@@ -9,9 +9,10 @@
   padding-left: 5px;
 }
 .topbar{
-  background-color: #8f8f8f;
+  background-color: #363636;
   width:100%;
-  padding:auto;
+  padding:  20px;
+  color:white;
 }
 .containers{
   margin-top: 10px;
@@ -23,6 +24,7 @@
 .submit button{
   margin-left: 20px;;
 }
+
 button[name="submit"]{
   background-color: #8ad49d;
   border-radius: 5px;
@@ -38,6 +40,12 @@ button[name='extrefadd']{
 
   background-color: #80e0ed;
 }
-td[name='errormsg']{
+.input{
   border:none;
+}
+input[type="checkbox"]{
+  margin-left:10px;
+}
+textarea{
+  margin-left:10px;
 }
